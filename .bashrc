@@ -7,10 +7,13 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Affiche cowsay et fortune
+# Il faut installer cowsay et fortune-fr
 #cowsay -f head-in.cow "`fortune -s`"
 
-PATH=$PATH:/usr/games/
+# Ajout de PATH
 # PATH=$PATH:/home/benwa-ktm/.E-Finance\ Java/
+PATH=$PATH:/usr/games/
 
 ########################################
 # HISTORIQUE #
@@ -46,14 +49,14 @@ PROMPT_COMMAND='history -a;echo -en "\033[m\033[38;5;2m"$(( `sed -nu "s/MemFree:
 # OTHERS #
 ########################################
 
-# empèche l'écrasement lors d'une redirection : >
+# empèche l'écrasement lors d'une redirection (> ou >>). Demande la confirmation.
 set -o noclobber
 
-# Editeur par défaut
+# Editeur par défaut.
 export EDITOR=vim
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Vérifie la taille de la fenêtre après chaque commande,
+# et met à jour les valeurs LINES et COLUMNS.
 shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -116,7 +119,7 @@ if [ -x /usr/bin/dircolors ]; then
  
     export LS_OPTIONS='--color=auto'
  
-    alias ls='ls -alh $LS_OPTIONS'
+    alias ls='ls -lh $LS_OPTIONS'
     alias dir='dir $LS_OPTIONS'
     alias vdir='vdir $LS_OPTIONS'
  
@@ -148,14 +151,11 @@ alias psuser='ps aux  --sort=-%cpu | grep -m 11 -v `whoami`'
 alias lslastfiles='ls -altrh --time-style=+%D | grep `date +%D`'
 #alias wrongpass='WHINY_USERS=1 awk '/Failed password for invalid user/{_[$11]++}END{for (i in _){printf "%s%s (%s)" ,sep,i,_[i];sep=", "};printf "\n"}' /var/log/auth.log'
 
+# PERSO
 alias sshks='ssh benwa-ktm@91.121.104.217 -p 2024'
 alias sshr2='ssh benwa-ktm@r2dd2.org -p2024'
 
-#alias sshuchronia='ssh benwa-ktm@192.168.86.86 -p 2024'
-#alias sshuchroniaext='ssh benwa-ktm@benwa.is-a-geek.org -p 2024'
-#alias sshantipolis='ssh benwa-ktm@192.168.86.50'
-#alias sshantipolisext='ssh benwa-ktm@benwa.is-a-geek.org -p 2025'
-
+# DP
 alias sshpinguin='ssh benwa-ktm@cnova.dyndns.org -p 2024'
 alias sshnova='ssh benwa-ktm@cnova.dyndns.org -p 2024'
 alias sshsamourai='ssh benwa-ktm@hacktic.dyndns.org'
@@ -163,6 +163,7 @@ alias sshvacarme='ssh benwa-ktm@vacarme.domainepublic.net -p3265'
 alias sshlucie='ssh benwa-ktm@lucie.domainepublic.net -p3265'
 alias sshginger='ssh benwa-ktm@ginger.domainepublic.net -p3265'
 
+# GESTPUB
 alias sshgestpub_puppetmaster='ssh root@87.98.187.68 -p2424'
 alias sshgestpub_arthur='ssh root@178.32.100.92 -p22'
 #alias sshgestpub_relay='ssh root@91.121.202.207 -p22'
@@ -170,6 +171,7 @@ alias sshgestpub_relay='ssh root@94.23.167.16 -p22'
 alias sshgestpub_ns369325='ssh root@94.23.43.193 -p2424'
 alias sshgestpub_ns389263='ssh root@176.31.101.54 -p2424'
 
+# NIMAG
 alias sshnimagipplan='ssh root@ipplan.nimag.net'
 alias sshnimagisptest='ssh root@isptest1.nimag.net'
 alias sshnimagadmin='ssh root@admin.nimag.net'
@@ -191,6 +193,7 @@ alias sshnimagplesk='ssh root@plesk9.nimag.net'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
+# Nécessite le paquet libnotify-bin
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 ###############################################
